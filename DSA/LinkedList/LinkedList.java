@@ -29,15 +29,22 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     public void display() {
+
+        if (head == null) {
+            throw new IndexOutOfBoundsException("List is empty. Cannot update the last Node");
+        }
+
         Node temp = head;
         while (temp != null) {
             System.out.print(temp.data + " ");
             temp = temp.next; // Jump...
         }
-        System.out.println(); // Add a new line after printing the list
+        System.out.println(); // Add a new line after printing the list.
+
     }
 
     public void insertAtBeginning(T val) {
+
         Node newNode = new Node(val);
         // when the list is empty
         if (head == null) {
@@ -46,13 +53,20 @@ public class LinkedList<T> implements Iterable<T> {
             newNode.next = head;
             head = newNode;
         }
+
     }
 
     public void insertAtPos(int pos, T val) {
+
+        if (head == null) {
+            throw new IndexOutOfBoundsException("List is empty. Cannot update the last Node");
+        }
+
         if (pos == 0) {
             insertAtBeginning(val);
             return;
         }
+
         Node newNode = new Node(val);
         Node temp = head;
 
@@ -69,8 +83,29 @@ public class LinkedList<T> implements Iterable<T> {
 
         newNode.next = temp.next;
         temp.next = newNode;
-    }
 
+    }
+    
+    //Added the new node at last node. 
+    public void insertAtEnd(T val) {
+
+        if (head == null) {
+            throw new IndexOutOfBoundsException("List is empty. Cannot insert at the end.");
+        }
+    
+        Node newNode = new Node(val);
+        Node temp = head;
+    
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+    
+        temp.next = newNode;
+    
+        System.out.println("Successfully added last node: " + val);
+
+    }
+    
     public void deleteAtPos(int pos) {
 
         if (head == null) {
@@ -80,8 +115,10 @@ public class LinkedList<T> implements Iterable<T> {
             deleteAtBeginning();
             return;
         }
+
         Node temp = head;
         Node prev = null;
+
         for (int i = 0; i < pos; i++) {
             if (temp == null) {
                 throw new IndexOutOfBoundsException("Invalid position: " + pos);
@@ -105,92 +142,8 @@ public class LinkedList<T> implements Iterable<T> {
 
     }
 
-    public void getIndexVal(int pos) {
-
-        Node temp = head;
-        for (int i = 0; i < pos; i++) {
-            if (temp == null) {
-                throw new IndexOutOfBoundsException("Invalid position: " + pos);
-            }
-            temp = temp.next;
-        }
-        if (temp == null) {
-            throw new IndexOutOfBoundsException("Invalid position: " + pos);
-        }
-        System.out.println(temp.data);
-
-    }
-
-    public void updateAtPos(int pos, T val) {
-
-        Node temp = head;
-        for (int i = 0; i < pos; i++) {
-            if (temp == null) {
-                throw new IndexOutOfBoundsException("Invalid position: " + pos);
-            }
-            temp = temp.next;
-        }
-        if (temp == null) {
-            throw new IndexOutOfBoundsException("Invalid position: " + pos);
-        }
-        temp.data = val;
-
-    }
-
-    public void updateAtPosOfEnd(T val) {
-        
-        if (head == null) {
-            throw new IndexOutOfBoundsException("List is empty. Cannot update the last Node");
-        }
-
-        Node temp = head;
-        while(temp.next != null) {
-            temp = temp.next;
-        }
-        temp.data = val;
-        System.out.println("Last node is updated with value "+ val);
-
-    }
-    public void containsAtVal(T val) {
-
-        boolean contain = false;
-        Node temp = head;
-        while(temp != null) {
-            if (temp.data.equals(val)) {
-                contain = true;
-                break;
-            }
-            temp = temp.next;
-        }
-        if (contain) {
-            System.out.print("Your data is found: " + contain);
-        } else {
-            System.out.print("your data "+ val+ " is not found: "+ contain);
-        }
-
-    }
-    public void searchVal(T val) {
-
-        Node temp = head;
-        int position = 0;
-        boolean found = false;
-        while (temp != null) {
-            position += 1;
-            if (temp.data.equals(val)) {
-                found = true;
-                break;
-            }
-            temp = temp.next;
-        }
-        if (found) {
-            System.out.println("Your value " + val + " is found at position: " + position);
-        } else {
-            System.out.println("Your value " + val + " is not found in the list.");
-        }
-
-    }
-
     public void deleteAtEnd() {
+
         if (head == null) {
             throw new IndexOutOfBoundsException("List is empty. Cannot delete the last node.");
         }
@@ -215,7 +168,100 @@ public class LinkedList<T> implements Iterable<T> {
     
         System.out.println("Successfully deleted the last node, the node is :" + temp.data);
     }
-    
+
+    public void getIndexVal(int pos) {
+
+        if (head == null) {
+            throw new IndexOutOfBoundsException("List is empty. Cannot update the last Node");
+        }
+
+        Node temp = head;
+        for (int i = 0; i < pos; i++) {
+            if (temp == null) {
+                throw new IndexOutOfBoundsException("Invalid position: " + pos);
+            }
+            temp = temp.next;
+        }
+        if (temp == null) {
+            throw new IndexOutOfBoundsException("Invalid position: " + pos);
+        }
+        System.out.println("Your checking possion value is : " + temp.data);
+
+    }
+    //Update at any possition but we won't update at last node.
+    public void updateAtPos(int pos, T val) {
+
+        if (head == null) {
+            throw new IndexOutOfBoundsException("List is empty. Cannot update the last Node");
+        }
+        Node temp = head;
+        for (int i = 0; i < pos; i++) {
+            if (temp == null) {
+                throw new IndexOutOfBoundsException("Invalid position: " + pos);
+            }
+            temp = temp.next;
+        }
+        if (temp == null) {
+            throw new IndexOutOfBoundsException("Invalid position: " + pos);
+        }
+        temp.data = val;
+
+    }
+    //Update at last possition only.
+    public void updateAtPosOfEnd(T val) {
+        
+        if (head == null) {
+            throw new IndexOutOfBoundsException("List is empty. Cannot update the last Node");
+        }
+
+        Node temp = head;
+        while(temp.next != null) {
+            temp = temp.next;
+        }
+        temp.data = val;
+        System.out.println("Last node is updated with value "+ val);
+
+    }
+    //Check the value in the list or not
+    public void containsAtVal(T val) {
+
+        boolean contain = false;
+        Node temp = head;
+        while(temp != null) {
+            if (temp.data.equals(val)) {
+                contain = true;
+                break;
+            }
+            temp = temp.next;
+        }
+        if (contain) {
+            System.out.print("Your data is found: " + contain);
+        } else {
+            System.out.print("your data "+ val+ " is not found: "+ contain);
+        }
+
+    }
+    //Search value and return possition.
+    public void searchVal(T val) {
+
+        Node temp = head;
+        int position = 0;
+        boolean found = false;
+        while (temp != null) {
+            position += 1;
+            if (temp.data.equals(val)) {
+                found = true;
+                break;
+            }
+            temp = temp.next;
+        }
+        if (found) {
+            System.out.println("Your value " + val + " is found at position: " + position);
+        } else {
+            System.out.println("Your value " + val + " is not found in the list.");
+        }
+
+    }    
 
     @Override
     public Iterator<T> iterator() {
