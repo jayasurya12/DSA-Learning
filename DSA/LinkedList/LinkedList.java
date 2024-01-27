@@ -123,7 +123,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     public void updateAtPos(int pos, T val) {
         Node temp = head;
-        for (int i = 0; i < pos; i++) {
+        for (int i = 0; i <= pos; i++) {
             if (temp == null) {
                 throw new IndexOutOfBoundsException("Invalid position: " + pos);
             }
@@ -136,7 +136,19 @@ public class LinkedList<T> implements Iterable<T> {
 
         temp.data = val;
     }
+    public void updateAtPosOfEnd(T val) {
+        
+        if (head == null) {
+            throw new IndexOutOfBoundsException("List is empty. Cannot update the last Node");
+        }
 
+        Node temp = head;
+        while(temp.next != null) {
+            temp = temp.next;
+        }
+        temp.data = val;
+        System.out.println("Last node is updated with value "+ val);
+    }
     @Override
     public Iterator<T> iterator() {
         // TODO Auto-generated method stub
