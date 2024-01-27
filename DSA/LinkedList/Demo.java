@@ -9,8 +9,9 @@ public class Demo {
         
         // list.display();
         // list.deleteAtPos(0);
-        list.getIndexVal(2);
-        // list.updateAtPos(0, 10);
-        // list.display();
+        // list.getIndexVal(2);
+        list.updateAtPos(2, 10);
+        list.updateAtPosOfEnd(50);
+        list.display();
     }
 }
