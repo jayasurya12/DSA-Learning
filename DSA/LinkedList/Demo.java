@@ -14,6 +14,7 @@ public class Demo {
         list.containsAtVal(510);
         list.searchVal(100);
         // list.deleteAtEnd();
+        list.reverse(); // Revers the Node List.
         list.display();
     }
 }
