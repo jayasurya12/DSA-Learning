@@ -12,6 +12,7 @@ public class Demo {
         // list.getIndexVal(2);
         list.updateAtPos(2, 10);
         list.updateAtPosOfEnd(50);
-        list.display();
+        // list.display();
+        list.containsAtVal(510);
     }
 }

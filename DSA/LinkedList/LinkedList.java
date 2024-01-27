@@ -123,7 +123,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     public void updateAtPos(int pos, T val) {
         Node temp = head;
-        for (int i = 0; i <= pos; i++) {
+        for (int i = 0; i < pos; i++) {
             if (temp == null) {
                 throw new IndexOutOfBoundsException("Invalid position: " + pos);
             }
@@ -148,6 +148,22 @@ public class LinkedList<T> implements Iterable<T> {
         }
         temp.data = val;
         System.out.println("Last node is updated with value "+ val);
+    }
+    public void containsAtVal(T val) {
+        boolean contain = false;
+        Node temp = head;
+        while(temp != null) {
+            if (temp.data.equals(val)) {
+                contain = true;
+                break;
+            }
+            temp = temp.next;
+        }
+        if (contain) {
+            System.out.print("Your data is found: " + contain);
+        } else {
+            System.out.print("your data"+ val+ "is not found: "+ contain);
+        }
     }
     @Override
     public Iterator<T> iterator() {
