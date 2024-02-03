@@ -9,8 +9,15 @@ class Node {
 
 public class BST{
     Node root;
-    public void insert() {
-
+    public Node insert(Node root, int val) {
+        if (root == null) {
+            return new Node(val);
+        }
+        if (val < root.key) {
+            root.left = insert(root.left, val);
+        } if (val > root.key) {
+            root.right = insert(root.right, val);
+        }
     }
 
     public void insert() {
@@ -24,3 +31,4 @@ public class BST{
         root = null;
     }
 }
+// unable to access 'https://github.com/user-name/repo/': Could not resolve host: github.com
