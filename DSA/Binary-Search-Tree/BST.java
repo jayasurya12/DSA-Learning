@@ -1,34 +1,53 @@
 class Node {
     int key;
     Node left, right;
+
     public Node (int key) {
+
         this.key = key;
         left = right = null;
+
     }
 }
 
 public class BST{
+
     Node root;
+
     public Node insert(Node root, int val) {
-        if (root == null) {
+        if (root == null)
             return new Node(val);
-        }
-        if (val < root.key) {
+    
+        if (val < root.key)
             root.left = insert(root.left, val);
-        } if (val > root.key) {
+        else if (val > root.key) 
             root.right = insert(root.right, val);
-        }
+    
+        return root;
     }
+    
 
-    public void insert() {
+    public Node search(Node root, int val) {
 
+        if (root == null || root.key == val)
+            return root;
+
+        if (val < root.key)
+            return search(root.left, val);
+    
+        return search(root.right, val);
     }
 
     public BST(int val) {
         root = new Node(val);
     }
-    public BST() {
-        root = null;
+
+    public void inOrder(Node root) {
+        if (root != null) {
+            inOrder(root.left);
+            System.out.print(root.key + " ");
+            inOrder(root.right);
+        }
     }
+    
 }
-// unable to access 'https://github.com/user-name/repo/': Could not resolve host: github.com
