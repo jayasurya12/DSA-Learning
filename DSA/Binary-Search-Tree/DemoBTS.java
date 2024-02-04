@@ -12,11 +12,8 @@ public class DemoBTS {
         bst.inOrder(bst.root);
     
         if (bst.search(bst.root, 70) == null)
-
             System.out.print("Not found");
-
         else
-
             System.out.print("found");
 
     }
