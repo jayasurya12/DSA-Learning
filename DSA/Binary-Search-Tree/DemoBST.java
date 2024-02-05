@@ -6,9 +6,11 @@ public class DemoBST {
         bst.insert(bst.root, 30);
         bst.insert(bst.root, 40);
         bst.insert(bst.root, 60);
+        bst.insert(bst.root, 100);
         bst.insert(bst.root, 70);
         bst.insert(bst.root, 80);
 
+        bst.delete(bst.root, 60);
         bst.inOrder(bst.root);
     
         if (bst.search(bst.root, 70) == null) {

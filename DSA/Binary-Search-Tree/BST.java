@@ -90,6 +90,7 @@ public class BST{
         }
         return root;
     }
+
     public int min(Node root) {
         int minVal = root.key;
         while(root.left != null) {
