@@ -70,4 +70,30 @@ public class BST{
         int right = height(root.right);
         return Math.max(left, right) + 1;
     }
+
+    public Node delete(Node root, int val) {
+        if (root == null) {
+            return root;
+        }
+        if (val < root.key) {
+            root.left = delete(root.left, val);
+        } else if (val > root.key) {
+            root.right = delete(root.left, val);
+        } else {
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
+            }
+            root.key = min(root.right);
+            root.right = delete(root.right, root.key);
+        }
+    }
+    public int min(Node root) {
+        int minVal = root.key;
+        while(root.left != null) {
+            minVal = root.left.key;
+            root = root.left;
+        }
+    }
 }
