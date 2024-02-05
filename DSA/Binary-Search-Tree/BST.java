@@ -78,7 +78,7 @@ public class BST{
         if (val < root.key) {
             root.left = delete(root.left, val);
         } else if (val > root.key) {
-            root.right = delete(root.left, val);
+            root.right = delete(root.right, val);
         } else {
             if (root.left == null) {
                 return root.right;
