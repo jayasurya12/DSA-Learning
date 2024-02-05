@@ -72,9 +72,9 @@ public class BST{
     }
 
     public Node delete(Node root, int val) {
-        if (root == null) {
-            return root;
-        }
+    
+        if (root == null) return root;
+    
         if (val < root.key) {
             root.left = delete(root.left, val);
         } else if (val > root.key) {
