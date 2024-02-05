@@ -88,6 +88,7 @@ public class BST{
             root.key = min(root.right);
             root.right = delete(root.right, root.key);
         }
+        return root;
     }
     public int min(Node root) {
         int minVal = root.key;
@@ -95,5 +96,6 @@ public class BST{
             minVal = root.left.key;
             root = root.left;
         }
+        return minVal;
     }
 }
