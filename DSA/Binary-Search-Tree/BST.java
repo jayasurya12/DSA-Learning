@@ -1,19 +1,22 @@
-class Node {
-    int key;
-    Node left, right;
+import java.util.ArrayList;
+import java.util.Stack;
 
-    public Node (int key) {
 
-        this.key = key;
-        left = right = null;
-
-    }
-}
 
 public class BST{
 
     Node root;
-
+    class Node {
+        int key;
+        Node left, right;
+    
+        public Node (int key) {
+    
+            this.key = key;
+            left = right = null;
+    
+        }
+    }
     public Node insert(Node root, int val) {
         if (root == null)
             return new Node(val);
@@ -48,6 +51,26 @@ public class BST{
             System.out.print(root.key + " ");
             inOrder(root.right);
         }
+
+        // Stack<Node> stk = new Stack<>();
+        // ArrayList<Integer> arr = new ArrayList<>();
+        // Node curr = root;
+
+        // while (curr != null || !stk.isEmpty()) {
+        //     if (curr != null) {
+        //         stk.push(curr);
+        //         curr = curr.left;
+        //     } else {
+        //         arr.add(stk.peek().key);  // Assuming 'key' is the value of the node
+        //         curr = stk.pop().right;
+        //     }
+        // }
+
+        // int[] result = new int[arr.size()];
+        // for (int i = 0; i < arr.size(); i++) {
+        //     result[i] = arr.get(i);
+        // }
+        // return result;
     }
     
     public int size(Node root) {
@@ -72,7 +95,7 @@ public class BST{
     }
 
     public Node delete(Node root, int val) {
-    
+
         if (root == null) return root;
     
         if (val < root.key) {
@@ -98,5 +121,19 @@ public class BST{
             root = root.left;
         }
         return minVal;
+    }
+    // print of left subtree
+    public void leftsum(Node root) {
+        if (root == null) {
+            System.out.println(0);
+        }
+        int sum = 0;
+        if (root.left != null && root.left.left == null && root.left.right == null){ //finding here leaf node
+            sum += root.left.key;
+        } else {
+            leftsum(root.left);
+        }
+        leftsum(root.right);
+        System.out.print(sum);
     }
 }

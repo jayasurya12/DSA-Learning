@@ -9,10 +9,10 @@ public class DemoBST {
         bst.insert(bst.root, 100);
         bst.insert(bst.root, 70);
         bst.insert(bst.root, 80);
-
-        bst.delete(bst.root, 60);
         bst.inOrder(bst.root);
-    
+        bst.delete(bst.root, 60);
+        // int[] inOrderArray = bst.inOrder(bst.root);
+        // System.out.print(inOrderArray);
         if (bst.search(bst.root, 70) == null) {
             System.out.println("Not found");
         } else {
@@ -28,5 +28,8 @@ public class DemoBST {
         // height of node;
         int height = bst.height(bst.root);
         System.out.print(height + " : Height of Node");
+        
+        // left subtree
+        bst.leftsum(bst.root);
     }
 }
