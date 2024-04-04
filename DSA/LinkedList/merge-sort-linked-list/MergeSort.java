@@ -1,68 +1,93 @@
 class ListNode {
     int val;
     ListNode next;
-    
-    public ListNode(int data) {
-        this.val = data;
+
+    public ListNode(int val) {
+        this.val = val;
         this.next = null;
     }
 }
 
+
 public class MergeSort {
-    public ListNode mergeTwoLists(ListNode A, ListNode B) {
-        if (A == null) return B;
-        if (B == null) return A;
-
-        ListNode head = null;
-        if (A.val < B.val) {
-            head = A;
-            A = A.next;
-        } else {
-            head = B;
-            B = B.next;
+    public ListNode sortList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head; // Base case: if list is empty or has only one node, it is already sorted
         }
-        ListNode temp = head;
-        ListNode h1 = A;
-        ListNode h2 = B;
-
-        while (h1 != null && h2 != null) {
-            if (h1.val < h2.val) {
-                temp.next = h1;
-                h1 = h1.next;
-            } else {
-                temp.next = h2;
-                h2 = h2.next;
-            }
-            temp = temp.next;
-        }
-        // Handle the case where one list is exhausted but the other still has elements
-        if (h1 == null) {
-            temp.next = h2;
-        }
-        if (h2 == null) {
-            temp.next = h1;
-        }
-        // Return the merged list's head
-        return head;
+        
+        // Find the middle of the list
+        ListNode mid = findMiddle(head);
+        ListNode midNext = mid.next;
+        mid.next = null; // Split the list into two halves
+        
+        // Recursively sort the two halves
+        ListNode sortedLeft = sortList(head);
+        ListNode sortedRight = sortList(midNext);
+        
+        // Merge the sorted halves
+        return merge(sortedLeft, sortedRight);
     }
     
+    // Function to find the middle of the list using slow and fast pointers
+    private ListNode findMiddle(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    
+    // Function to merge two sorted lists
+    private ListNode merge(ListNode left, ListNode right) {
+        ListNode dummy = new ListNode(0); // Dummy node to simplify code
+        ListNode current = dummy;
+        
+        // Merge the two lists until one of them becomes null
+        while (left != null && right != null) {
+            if (left.val < right.val) {
+                current.next = left;
+                left = left.next;
+            } else {
+                current.next = right;
+                right = right.next;
+            }
+            current = current.next;
+        }
+        
+        // Append the remaining nodes of the non-null list
+        if (left != null) {
+            current.next = left;
+        } else {
+            current.next = right;
+        }
+        
+        return dummy.next; // Return the merged list
+    }
+
+    public static void printList(ListNode head, String commaString) {
+        System.out.println(commaString);
+        ListNode current = head;
+        while (current != null) {
+            System.out.print(current.val + " ");
+            current = current.next;
+        }
+        System.out.println("---------------finished;;;;;;;--------------");
+    }
 
     public static void main(String[] args) {
-        Test test = new Test();
-        ListNode head1 = new ListNode(1);
-        head1.next = new ListNode(3);
-        head1.next.next = new ListNode(5);
-
-        ListNode head2 = new ListNode(2);
-        head2.next = new ListNode(4);
-        head2.next.next = new ListNode(6);
-
-        ListNode merged = test.mergeTwoLists(head1, head2);
-
-        // Print the merged list
-        while (merged != null) {
-            System.out.println(merged.val);
-            merged = merged.next;
-        }
+        MergeSort mergeSort = new MergeSort();
+    
+        ListNode Node = new ListNode(2);
+        Node.next = new ListNode(4);
+        Node.next.next = new ListNode(7);
+        Node.next.next.next = new ListNode(3);
+        Node.next.next.next.next = new ListNode(10);
+        // Print the list of here.
+        printList(Node, "Unsorted Linked List");
+        ListNode sorted = mergeSort.sortList(Node);
+        printList(sorted, "Sorted Linked List");
     }
 }
