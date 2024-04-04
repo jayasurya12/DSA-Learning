@@ -58,12 +58,9 @@ public class MergeSort {
         }
         
         // Append the remaining nodes of the non-null list
-        if (left != null) {
-            current.next = left;
-        } else {
-            current.next = right;
-        }
-        
+        if (left == null) current.next = right;
+        if (right == null) current.next = left;
+
         return dummy.next; // Return the merged list
     }
 
