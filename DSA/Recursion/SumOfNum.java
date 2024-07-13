@@ -18,11 +18,26 @@ class SumOfNum {
         //TC O(N) and SC O(N);
     }
 
+    static void reverse(int l, int[] arr, int r) {
+        if (l >= r) return;
+        int temp = arr[l];
+        arr[l] = arr[r];
+        arr[r] = temp;
+        reverse(l + 1, arr, r - 1);
+    }
+
     public static void main(String[] args) {
         sum(3, 0);
         System.out.println("Sum : "+ sum(3));
 
         System.out.println("Sum of factorial: " + fact(5));
+
+        int[] arr = {4, 3, 2, 1, 0};
+        reverse(0, arr, arr.length - 1);  // Corrected to use arr.length - 1
+
+        for (int num : arr) {
+            System.out.print(num + " ");  // Corrected to print the elements directly
+        }
     }
 
 }
