@@ -15,6 +15,7 @@ class SumOfNum {
     static int fact(int num) {
         if (num == 1) return 1;
         return num * fact(num - 1);
+        //TC O(N) and SC O(N);
     }
 
     public static void main(String[] args) {
