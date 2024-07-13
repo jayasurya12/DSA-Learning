@@ -12,9 +12,16 @@ class SumOfNum {
         return num + sum(num-1);
     }
 
+    static int fact(int num) {
+        if (num == 1) return 1;
+        return num * fact(num - 1);
+    }
+
     public static void main(String[] args) {
         sum(3, 0);
         System.out.println("Sum : "+ sum(3));
+
+        System.out.println("Sum of factorial: " + fact(5));
     }
 
 }
