@@ -3,7 +3,7 @@ import java.util.*;
 public class RedundantBraces {
     public boolean braces(String A) {
         Stack<Character> s = new Stack<>();
-        for (int i = 0 ; i < A.length() ; i++) {
+        for (int i = 0 ; i < A.length(); i++) {
             char c = A.charAt(i);
             if(c == ' ')
             continue;
