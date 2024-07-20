@@ -28,8 +28,18 @@ class Main {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
         root.right = new TreeNode(3);
+        
+        //Left SubTree
         root.left.left = new TreeNode(4);
         root.left.right = new TreeNode(5);
+        root.left.right.left = new TreeNode(8);
+        // root.left.right.right = new TreeNode(9);
+        // root.left.right.right.left = new TreeNode(11);
+
+        //Right SubTree
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+        root.right.left.right = new TreeNode(10);
 
         int height = Height(root);
         
