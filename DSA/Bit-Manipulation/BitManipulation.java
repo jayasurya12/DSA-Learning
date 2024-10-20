@@ -1,4 +1,4 @@
-public public class BitManipulation {
+public class BitManipulation {
     public static void main(String[] args) {
         int[] arr = {1, 2, 1, 3, 4, 3, 5, 8, 2, 4};
         int n = arr.length;
